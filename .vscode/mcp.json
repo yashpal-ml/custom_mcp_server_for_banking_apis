@@ -1,0 +1,20 @@
+{
+  "servers": {
+    "playwright": {
+			"command": "npx",
+			"args": [
+				"@playwright/mcp@latest"
+			],
+			"type": "stdio"
+		},
+    "new_api_mcp": {
+      "command": "uv",
+      "args": [
+        "--directory",
+        "C:\\Users\\yashp\\OneDrive\\Documents\\Phani\\new_mcp\\new_api_mcp",
+        "run",
+        "main.py"
+      ]
+    }
+  }
+}
