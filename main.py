@@ -387,12 +387,13 @@ async def run_script_for_MMA(
 #     max_output_chars: Annotated[int, "Max stdout/stderr chars to return"] = 8000,
 # ) -> str:
 #     """Execute the XYZ Bank Playwright deposit script and return structured results."""
-#     if not XYZ_BANK_DEPOSIT_SCRIPT.is_file():
+#     xyz_bank_deposit_script = PROJECT_ROOT / "scripts" / "xyz_bank_deposit.py"
+#     if not xyz_bank_deposit_script.is_file():
 #         return json.dumps(
 #             {
 #                 "status": "error",
 #                 "error": "xyz_bank_deposit.py script not found",
-#                 "script_path": XYZ_BANK_DEPOSIT_SCRIPT.relative_to(PROJECT_ROOT).as_posix(),
+#                 "script_path": (PROJECT_ROOT / "scripts" / "xyz_bank_deposit.py").relative_to(PROJECT_ROOT).as_posix(),
 #             },
 #             indent=2,
 #         )
@@ -406,7 +407,7 @@ async def run_script_for_MMA(
 
 #     env = os.environ.copy()
 #     env["HEADLESS"] = "true" if headless else "false"
-#     command = [sys.executable, "-u", str(XYZ_BANK_DEPOSIT_SCRIPT)]
+#     command = [sys.executable, "-u", str(xyz_bank_deposit_script)]
 
 #     start = time.perf_counter()
 #     try:
@@ -429,7 +430,7 @@ async def run_script_for_MMA(
 #                 "status": "success" if completed.returncode == 0 else "failed",
 #                 "return_code": completed.returncode,
 #                 "duration_seconds": duration_seconds,
-#                 "script_path": XYZ_BANK_DEPOSIT_SCRIPT.relative_to(PROJECT_ROOT).as_posix(),
+#                 "script_path": xyz_bank_deposit_script.relative_to(PROJECT_ROOT).as_posix(),
 #                 "headless": headless,
 #                 "requested_timeout_seconds": requested_timeout_seconds,
 #                 "effective_timeout_seconds": timeout_seconds,
@@ -446,7 +447,7 @@ async def run_script_for_MMA(
 #                 "status": "timeout",
 #                 "error": f"Deposit script exceeded timeout of {timeout_seconds} seconds",
 #                 "duration_seconds": duration_seconds,
-#                 "script_path": XYZ_BANK_DEPOSIT_SCRIPT.relative_to(PROJECT_ROOT).as_posix(),
+#                 "script_path": xyz_bank_deposit_script.relative_to(PROJECT_ROOT).as_posix(),
 #                 "headless": headless,
 #                 "requested_timeout_seconds": requested_timeout_seconds,
 #                 "effective_timeout_seconds": timeout_seconds,
@@ -461,7 +462,7 @@ async def run_script_for_MMA(
 #                 "status": "error",
 #                 "error": "Failed to execute XYZ Bank deposit script",
 #                 "details": str(e),
-#                 "script_path": XYZ_BANK_DEPOSIT_SCRIPT.relative_to(PROJECT_ROOT).as_posix(),
+#                 "script_path": xyz_bank_deposit_script.relative_to(PROJECT_ROOT).as_posix(),
 #             },
 #             indent=2,
 #         )

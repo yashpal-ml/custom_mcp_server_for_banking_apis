@@ -50,8 +50,7 @@
 - Do not infer persistent storage; there is no database.
 - Keep changes small and aligned with the current simple architecture.
 - When adding new MCP tools, return structured JSON strings and follow the existing timeout/error-handling pattern.
-- When a prompt asks to create a savings account and perform a deposit transaction, first trigger `create_savings_account` from the `new_api_mcp` server and then run the `xyz_bank_deposit.py` script using Playwright MCP.
-<!-- - Follow the savings-account-plus-deposit tool order above even if the deposit is requested immediately after account creation in the same prompt. -->
+- To perform a deposit transaction, use the `/xyz-deposit-txn` prompt.
 
 ## Runtime assumptions
 - Python dependencies come from [pyproject.toml](pyproject.toml).
